@@ -1,1 +1,0 @@
-select * from db_ecomm.sc_ecom.users

@@ -1,3 +1,7 @@
 name: "dbt_first_project"
-profile: 'dbt_first_project'
+profile: "dbt_first_project"
 model-paths: ["models"]
+seed-paths: ["custom-seeds"]
+analysis-paths: ["custom-analyses"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]

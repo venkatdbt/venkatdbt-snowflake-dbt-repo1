@@ -1,5 +1,5 @@
-select * from db_ecomm.sc_ecom.users 
+select * from {{ source('venky','USERS') }}
 union all
-select * from db_ecomm.sc_ecom.users
+select * from {{ source('venky','USERS') }}
 union all
-select * from db_ecomm.sc_ecom.users
+select * from {{ source('venky','USERS') }}
