@@ -1,0 +1,26 @@
+sources:
+ - name: 'venky'
+   database: DB_ECOMM
+   schema: SC_ECOM
+   tables:
+     - name: USERS
+     - name: t1
+     - name: person_sales
+     - name: dim_pay
+     - name: financials
+     - name: dim_sales
+     - name: scd_eg
+
+models:
+  - name: "sahil3"
+    config:
+      materialized: 'table'
+  - name: "users_dbt2"
+    config:
+      materialized: 'table'
+  - name: "users_dbt5"
+    config:
+      materialized: 'view'
+  - name: "cust_v4"
+    config: 
+      materialized: 'ephemeral'
