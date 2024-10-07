@@ -1,5 +1,6 @@
 sources:
  - name: 'venky'
+   description: "this is venkats source"
    database: DB_ECOMM
    schema: SC_ECOM
    tables:
@@ -10,6 +11,10 @@ sources:
      - name: financials
      - name: dim_sales
      - name: scd_eg
+     - name: pi_raw
+     - name: marketing
+       description: "this table is used by marketing team it has granularity of sources"
+     - name: finance
 
 models:
   - name: "sahil3"
@@ -24,3 +29,47 @@ models:
   - name: "cust_v4"
     config: 
       materialized: 'ephemeral'
+  - name: "pii"
+    config:
+      materialized: 'table'
+    columns: 
+      - name: "id"
+        tests:
+         - unique
+         - not_null
+      - name: "Gender"
+        tests:
+         - accepted_values :
+             values: ['Female','Male']
+  - name: "pii2"
+    config:
+      materialized: 'table'
+    columns: 
+      - name: "id"
+        tests:
+         - relationships:
+            field: "id"
+            to: ref{'pii'}
+  - name: "marketing_stg"
+    description: "this table is used by marketing team it is developed by venkat"
+    config:
+      materialized: 'table'
+    columns:
+     - name: 'sales' 
+       description: "sales column coming from fact sales"
+       tests: 
+        - new_test
+     - name: 'cost'
+  - name: finance
+    config:
+      materialized: 'table'
+    columns:
+     - name: cost
+       tests:
+        - new_test
+     - name: 'sales'
+       tests:
+        - dbt_expectations.expect_column_values_to_be_between:
+            min_value: 100
+            max_value: 200
+  
